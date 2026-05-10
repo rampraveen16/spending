@@ -1,5 +1,17 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## MongoDB Setup
+
+Create a `.env` file in the project root with your MongoDB connection string:
+
+```bash
+MONGODB_URI="your-mongodb-connection-string"
+# optional, picks a default DB name
+MONGODB_DB="your-db-name"
+```
+
+If you already use `spending_MONGODB_URI`, the app also supports that key.
+
 ## Getting Started
 
 First, run the development server:
