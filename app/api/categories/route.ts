@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getDatabase } from "@/lib/mongodb";
+import { getCategoriesCollection } from "@/lib/mflix-db";
 
 type CreateCategoryBody = {
   name?: string;
@@ -18,14 +18,14 @@ export async function POST(request: Request) {
       );
     }
 
-    const db = await getDatabase("sample_mflix");
+    const categoriesCollection = await getCategoriesCollection();
     const category = {
       name,
       description: body.description?.trim() || "",
       createdAt: new Date(),
     };
 
-    const result = await db.collection("Categories").insertOne(category);
+    const result = await categoriesCollection.insertOne(category);
 
     return NextResponse.json(
       {
