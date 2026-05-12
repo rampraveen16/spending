@@ -48,7 +48,7 @@ export default async function Home() {
             <div className="mt-6 space-y-4">
               <div className="flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
                 <div>
-                  <p className="text-sm text-gray-600 font-semibold">Username</p>
+                  <p className="text-sm text-gray-600 font-semibold">Username :</p>
                   <p className="text-2xl font-bold text-gray-900">{session.username}</p>
                 </div>
               </div>
