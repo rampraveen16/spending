@@ -3,17 +3,17 @@ import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
 const secret = new TextEncoder().encode(
-  process.env.JWT_SECRET || "your-secret-key-change-in-production"
+  process.env.NEXTAUTH_SECRET || "your-secret-key-change-in-production"
 );
 
 export async function proxy(request: NextRequest) {
   const token = request.cookies.get("session")?.value;
+  console.log( process.env.NEXTAUTH_SECRET);
   const { pathname } = request.nextUrl;
 
   // If accessing login page and already authenticated, redirect to home
   if (pathname === "/login" && token) {
     try {
-      console.log(secret.toString());
       await jwtVerify(token, secret);
       return NextResponse.redirect(new URL("/", request.url));
     } catch (err) {
