@@ -12,6 +12,7 @@ type CategoryListItem = {
 
 export default async function Home() {
   const session = await getSession();
+  console.log("Session data on home page:", session);
   let status = "Not connected";
   let categories: CategoryListItem[] = [];
 
