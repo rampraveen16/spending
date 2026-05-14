@@ -33,18 +33,18 @@ export default function UserHeader({ user }: UserHeaderProps) {
             <p className="font-semibold text-gray-900">Welcome, {user.username}</p>
             <p className="text-gray-600">{user.email}</p>
           </div>
+          <Link
+            href="/categories/new"
+            className="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 transition-colors"
+          >
+            Add Category
+          </Link>
           <button
             onClick={handleLogout}
             className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition-colors"
           >
             Logout
           </button>
-          <Link
-            href="/users"
-            className="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 transition-colors"
-          >
-            View Users
-          </Link>
         </>
       )}
     </nav>

@@ -1,35 +1,20 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { jwtVerify } from "jose";
-
-const secret = new TextEncoder().encode(
-  process.env.NEXTAUTH_SECRET || "your-secret-key-change-in-production"
-);
 
 export async function proxy(request: NextRequest) {
   const token = request.cookies.get("session")?.value;
-  console.log( process.env.NEXTAUTH_SECRET);
   const { pathname } = request.nextUrl;
 
-  // If accessing login page and already authenticated, redirect to home
-  if (pathname === "/login" && token) {
-    try {
-      await jwtVerify(token, secret);
-      return NextResponse.redirect(new URL("/", request.url));
-    } catch (err) {
-        console.log(`Invalid token on /login access: ${err}`);
-      // Token is invalid, allow access to login
-    }
-  }
+
 
   // If accessing protected routes without token, redirect to login
-  if (pathname === "/" || pathname === "/users") {
+  if (pathname === "/" ) {
+    console.log(token ? `Token found: ${token}` : "No token found");
     if (!token) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
 
     try {
-      await jwtVerify(token, secret);
       return NextResponse.next();
     } catch (err) {
       return NextResponse.redirect(new URL("/login", request.url));
@@ -40,5 +25,7 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/users"],
+  matcher: ["/", "/login",
+    
+  ],
 };

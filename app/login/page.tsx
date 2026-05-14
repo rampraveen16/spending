@@ -38,7 +38,7 @@ export default function LoginPage() {
       setPassword("");
 
       // Redirect to home page immediately
-      router.push("/users");
+      router.push("/");
     } catch (err) {
       setError("An error occurred. Please try again.");
       console.error("Login error:", err);
